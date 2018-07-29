@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.time.Month;
 
 @Entity
 @Table(name = "consuming")
@@ -16,11 +20,21 @@ public class Consuming {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="user")
+
+    @NotNull
     private String user;
-    private String month;
-    private double coldWaterCount;
+
+    @NotNull
+    private Month month;
+
+    @NotNull
+    @Digits(integer=5, fraction=2, message="....")
+    private BigDecimal coldWaterCount;
+
+    @NotNull
     private double hotWaterCount;
+
+    @NotNull
     private double gasCount;
 
     public Consuming() {
@@ -30,7 +44,7 @@ public class Consuming {
         this.user = user;
     }
 
-        public Consuming(String user, String month, double coldWaterCount, double hotWaterCount, double gasCount) {
+        public Consuming(String user, Month month, BigDecimal coldWaterCount, double hotWaterCount, double gasCount) {
         this.user = user;
         this.month = month;
         this.coldWaterCount = coldWaterCount;
@@ -46,19 +60,19 @@ public class Consuming {
         this.user = user;
     }
 
-    public String getMonth() {
+    public Month getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(Month month) {
         this.month = month;
     }
 
-    public double getColdWaterCount() {
+    public BigDecimal getColdWaterCount() {
         return coldWaterCount;
     }
 
-    public void setColdWaterCount(double coldWaterCount) {
+    public void setColdWaterCount(BigDecimal coldWaterCount) {
         this.coldWaterCount = coldWaterCount;
     }
 
