@@ -7,5 +7,5 @@ import java.util.List;
 public interface ConsumingDAO {
 
     void addConsuming(Consuming consuming);
-    List<Consuming> allConsumings();
+    List<Consuming> allConsumings(String userName);
 }

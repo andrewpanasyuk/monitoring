@@ -1,9 +1,5 @@
 package com.monitoring.model;
 
-
-//import org.springframework.data.annotation.Id;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
+import javax.validation.constraints.Size;
 import java.time.Month;
+import java.time.Year;
 
 @Entity
 @Table(name = "consuming")
@@ -22,34 +19,28 @@ public class Consuming {
     private Long id;
 
     @NotNull
+    @Size(min=1, max=10, message="incorrect value for: user name")
     private String user;
+
+    @NotNull
+    private Year year;
 
     @NotNull
     private Month month;
 
     @NotNull
-    @Digits(integer=5, fraction=2, message="....")
-    private BigDecimal coldWaterCount;
+    @Digits(integer=5, fraction=3, message="incorrect value for: cold water")
+    private double coldWater;
 
     @NotNull
-    private double hotWaterCount;
+    @Digits(integer=5, fraction=3, message="incorrect value for: hot water")
+    private double hotWater;
 
     @NotNull
-    private double gasCount;
+    @Digits(integer=5, fraction=3, message="incorrect value for: gas")
+    private double gas;
 
     public Consuming() {
-    }
-
-    public Consuming(String user) {
-        this.user = user;
-    }
-
-        public Consuming(String user, Month month, BigDecimal coldWaterCount, double hotWaterCount, double gasCount) {
-        this.user = user;
-        this.month = month;
-        this.coldWaterCount = coldWaterCount;
-        this.hotWaterCount = hotWaterCount;
-        this.gasCount = gasCount;
     }
 
     public String getUser() {
@@ -68,28 +59,44 @@ public class Consuming {
         this.month = month;
     }
 
-    public BigDecimal getColdWaterCount() {
-        return coldWaterCount;
+    public double getColdWater() {
+        return coldWater;
     }
 
-    public void setColdWaterCount(BigDecimal coldWaterCount) {
-        this.coldWaterCount = coldWaterCount;
+    public void setColdWater(double coldWater) {
+        this.coldWater = coldWater;
     }
 
-    public double getHotWaterCount() {
-        return hotWaterCount;
+    public double getHotWater() {
+        return hotWater;
     }
 
-    public void setHotWaterCount(double hotWaterCount) {
-        this.hotWaterCount = hotWaterCount;
+    public void setHotWater(double hotWater) {
+        this.hotWater = hotWater;
     }
 
-    public double getGasCount() {
-        return gasCount;
+    public double getGas() {
+        return gas;
     }
 
-    public void setGasCount(double gasCount) {
-        this.gasCount = gasCount;
+    public void setGas(double gas) {
+        this.gas = gas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Year getYear() {
+        return year;
+    }
+
+    public void setYear(Year year) {
+        this.year = year;
     }
 
     @Override
@@ -97,10 +104,11 @@ public class Consuming {
         return "Consuming{" +
                 "id=" + id +
                 ", user='" + user + '\'' +
-                ", month='" + month + '\'' +
-                ", coldWaterCount=" + coldWaterCount +
-                ", hotWaterCount=" + hotWaterCount +
-                ", gasCount=" + gasCount +
+                ", year=" + year +
+                ", month=" + month +
+                ", coldWater=" + coldWater +
+                ", hotWater=" + hotWater +
+                ", gas=" + gas +
                 '}';
     }
 }

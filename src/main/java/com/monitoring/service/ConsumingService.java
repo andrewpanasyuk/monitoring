@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ConsumingService {
     void addConsuming(Consuming consuming);
-    List<Consuming> allConsuming();
+    List<Consuming> allConsuming(String userName);
 }

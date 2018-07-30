@@ -19,7 +19,8 @@ public class ConsumingDAOImpl implements ConsumingDAO {
     }
 
     @Override
-    public List<Consuming> allConsumings() {
-        return entityManager.createQuery("Select t from " + Consuming.class.getSimpleName() + " t").getResultList();
+    public List<Consuming> allConsumings(String userName) {
+        return entityManager.createQuery("SELECT t FROM " + Consuming.class.getSimpleName() + " t WHERE t.user LIKE :userName").setParameter("userName", userName).getResultList();
+
     }
 }

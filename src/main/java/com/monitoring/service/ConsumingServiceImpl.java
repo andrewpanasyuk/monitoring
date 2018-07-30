@@ -21,7 +21,7 @@ public class ConsumingServiceImpl implements ConsumingService {
     }
 
     @Override
-    public List<Consuming> allConsuming() {
-        return consumingDAO.allConsumings();
+    public List<Consuming> allConsuming(String userName) {
+        return consumingDAO.allConsumings(userName);
     }
 }
